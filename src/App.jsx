@@ -34,7 +34,7 @@ function App() {
 
     try {
       // Fazendo um POST para o seu FastAPI!
-      const resposta = await fetch('http://127.0.0.1:8000/prever', {
+      const resposta = await fetch('https://api-imoveis-ia.onrender.com/prever', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(imovel) // Transforma o objeto JS em JSON
@@ -58,7 +58,7 @@ function App() {
     try {
       const detalhes = `Casa construída em ${imovel.YearBuilt}, ${imovel.FullBath} banheiros, nota ${imovel.OverallQual}, ${imovel.GarageCars} vagas de garagem.`;
       
-      const resposta = await fetch('http://127.0.0.1:8000/consultar-ia', {
+      const resposta = await fetch('https://api-imoveis-ia.onrender.com/consultar-ia', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
