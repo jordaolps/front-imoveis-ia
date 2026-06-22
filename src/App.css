@@ -1,44 +1,180 @@
-* { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-body { background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
+/* VARIÁVEIS DE COR PARA MODO CLARO E ESCURO */
+:root {
+  --bg-color: #f0f2f5; /* Cor de fundo estilo Whatsapp Web */
+  --text-color: #111b21;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #d1d7db;
+  --input-text: #111b21;
+  --bot-bubble: #ffffff;
+  --user-bubble: #d9fdd3; /* Verde Whatsapp */
+  --header-color: #111b21;
+  --shadow: rgba(0,0,0,0.1);
+}
+
+body.tema-escuro {
+  --bg-color: #111b21; /* Fundo escuro */
+  --text-color: #e9edef;
+  --card-bg: #202c33;
+  --input-bg: #2a3942;
+  --input-border: #202c33;
+  --input-text: #e9edef;
+  --bot-bubble: #202c33;
+  --user-bubble: #005c4b; /* Verde escuro Whatsapp */
+  --header-color: #e9edef;
+  --shadow: rgba(0,0,0,0.5);
+}
+
+* { 
+  box-sizing: border-box; 
+  font-family: 'Segoe UI', Helvetica Neue, Helvetica, Arial, sans-serif; 
+}
+
+body { 
+  background-color: var(--bg-color); 
+  color: var(--text-color);
+  margin: 0; 
+  padding: 20px; 
+  transition: background-color 0.3s ease; /* Transição suave */
+}
 
 .container { max-width: 1000px; margin: auto; }
-header { text-align: center; margin-bottom: 30px; color: #2c3e50; }
 
-.layout-duplo {
-  display: flex;
-  gap: 20px;
+.cabecalho { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 30px; 
+  color: var(--header-color); 
 }
+
+.btn-tema {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.layout-duplo { display: flex; gap: 20px; }
 
 @media (max-width: 768px) {
   .layout-duplo { flex-direction: column; }
+  .cabecalho { flex-direction: column; text-align: center; gap: 15px;}
 }
 
+/* CARTÕES E FORMULÁRIOS */
 .card {
-  background: white;
+  background: var(--card-bg);
   padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  flex: 1; /* Faz as duas colunas terem o mesmo tamanho */
+  border-radius: 12px;
+  box-shadow: 0 4px 6px var(--shadow);
+  flex: 1; 
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--input-border);
 }
 
-form { display: flex; flex-direction: column; gap: 10px; }
-label { font-size: 14px; font-weight: bold; color: #555; }
-input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+.card h2 { margin-top: 0; color: var(--header-color); }
 
-button {
-  background-color: #3498db; color: white; padding: 12px; border: none; border-radius: 5px;
-  font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s;
+form { display: flex; flex-direction: column; gap: 12px; }
+label { font-size: 14px; font-weight: bold; color: var(--text-color); opacity: 0.9;}
+
+input { 
+  padding: 12px; 
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--input-border); 
+  border-radius: 8px; 
+  font-size: 16px; 
 }
-button:hover { background-color: #2980b9; }
-button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
 
-.resultado-preco { margin-top: 20px; padding: 15px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 5px; }
-.valor-destaque { font-size: 24px; font-weight: bold; color: #1abc9c; margin: 0; }
+/* MELHORIA PARA O MÓBILE: Esconde as setinhas dentro do input de número */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
-.chat-box { flex-grow: 1; background: #f9f9f9; padding: 15px; border-radius: 5px; margin-bottom: 15px; min-height: 200px; overflow-y: auto;}
-.mensagem-ia { background: #eaf2f8; padding: 10px; border-radius: 8px; font-size: 15px; line-height: 1.5; margin-top: 10px;}
+.btn-avaliar {
+  background-color: #00a884; /* Verde destaque */
+  color: white; 
+  padding: 14px; 
+  border: none; 
+  border-radius: 8px;
+  font-size: 16px; 
+  cursor: pointer; 
+  font-weight: bold; 
+  margin-top: 10px; 
+  transition: 0.2s;
+}
+.btn-avaliar:hover { background-color: #008f6f; }
+.btn-avaliar:disabled { background-color: #555; cursor: not-allowed; }
+
+.resultado-preco { 
+  margin-top: 20px; 
+  padding: 15px; 
+  background-color: var(--input-bg); 
+  border-left: 5px solid #00a884; 
+  border-radius: 5px; 
+}
+.valor-destaque { font-size: 26px; font-weight: bold; color: #00a884; margin: 0; }
+
+/* CHAT ESTILO WHATSAPP */
+.chat-box { 
+  flex-grow: 1; 
+  background-color: var(--bg-color); /* Fundo da conversa */
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* Pattern sutil do wpp */
+  background-blend-mode: overlay;
+  padding: 15px; 
+  border-radius: 8px; 
+  margin-bottom: 15px; 
+  height: 400px; 
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: inset 0 2px 4px var(--shadow);
+}
+
+.mensagem {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px var(--shadow);
+  position: relative;
+}
+
+/* BALÃO DO BOT (Esquerda - Justificado) */
+.mensagem.bot {
+  background-color: var(--bot-bubble);
+  align-self: flex-start;
+  text-align: justify; /* Textos longos justificados como você pediu */
+  border-top-left-radius: 0; /* Ponta do balão */
+}
+
+/* BALÃO DO USUÁRIO (Direita - Alinhado à direita) */
+.mensagem.user {
+  background-color: var(--user-bubble);
+  align-self: flex-end;
+  text-align: right;
+  border-top-right-radius: 0; /* Ponta do balão */
+}
+
 .form-chat { flex-direction: row; }
 .form-chat input { flex-grow: 1; }
-.form-chat button { margin-top: 0; }
+.btn-enviar {
+  background-color: #00a884;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.btn-enviar:disabled { background-color: #555; cursor: not-allowed; }
