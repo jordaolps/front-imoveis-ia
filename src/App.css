@@ -1,33 +1,42 @@
-/* VARIÁVEIS DE COR PARA MODO CLARO E ESCURO */
+/* =========================================
+   1. VARIÁVEIS DE CORES (MODO CLARO E ESCURO)
+   ========================================= */
 :root {
-  --bg-color: #f0f2f5; /* Cor de fundo estilo Whatsapp Web */
+  --bg-color: #f0f2f5; 
   --text-color: #111b21;
   --card-bg: #ffffff;
-  --input-bg: #ffffff;
+  --input-bg: #f5f6f6;
   --input-border: #d1d7db;
   --input-text: #111b21;
   --bot-bubble: #ffffff;
-  --user-bubble: #d9fdd3; /* Verde Whatsapp */
+  --user-bubble: #d9fdd3; 
   --header-color: #111b21;
-  --shadow: rgba(0,0,0,0.1);
+  --shadow: rgba(0,0,0,0.08);
+  /* NOVA COR DA BARRA DO SLIDER: Cinza padrão */
+  --slider-track: #cfd9df; 
 }
 
 body.tema-escuro {
-  --bg-color: #111b21; /* Fundo escuro */
+  --bg-color: #111b21; 
   --text-color: #e9edef;
   --card-bg: #202c33;
   --input-bg: #2a3942;
   --input-border: #202c33;
   --input-text: #e9edef;
   --bot-bubble: #202c33;
-  --user-bubble: #005c4b; /* Verde escuro Whatsapp */
+  --user-bubble: #005c4b; 
   --header-color: #e9edef;
-  --shadow: rgba(0,0,0,0.5);
+  --shadow: rgba(0,0,0,0.4);
+  /* NOVA COR DA BARRA DO SLIDER: Cinza azulado claro para destacar no fundo escuro */
+  --slider-track: #536b7a; 
 }
 
+/* =========================================
+   2. ESTILOS GERAIS
+   ========================================= */
 * { 
   box-sizing: border-box; 
-  font-family: 'Segoe UI', Helvetica Neue, Helvetica, Arial, sans-serif; 
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
 }
 
 body { 
@@ -35,104 +44,150 @@ body {
   color: var(--text-color);
   margin: 0; 
   padding: 20px; 
-  transition: background-color 0.3s ease; /* Transição suave */
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
-.container { max-width: 1000px; margin: auto; }
+/* AUMENTAMOS A LARGURA AQUI: De 1000px para 1250px */
+.container { max-width: 1250px; margin: auto; }
 
 .cabecalho { 
   display: flex; 
   justify-content: space-between; 
   align-items: center; 
-  margin-bottom: 30px; 
-  color: var(--header-color); 
+  margin-bottom: 25px; 
+}
+
+.cabecalho h1 {
+  color: var(--header-color);
+  margin: 0;
 }
 
 .btn-tema {
   background: var(--card-bg);
   color: var(--text-color);
   border: 1px solid var(--input-border);
-  padding: 8px 15px;
+  padding: 10px 18px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0 2px 4px var(--shadow);
+  transition: 0.2s;
 }
+.btn-tema:hover { filter: brightness(0.9); }
 
-.layout-duplo { display: flex; gap: 20px; }
+.layout-duplo { display: flex; gap: 25px; }
 
 @media (max-width: 768px) {
   .layout-duplo { flex-direction: column; }
   .cabecalho { flex-direction: column; text-align: center; gap: 15px;}
 }
 
-/* CARTÕES E FORMULÁRIOS */
 .card {
   background: var(--card-bg);
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px var(--shadow);
+  box-shadow: 0 4px 10px var(--shadow);
   flex: 1; 
   display: flex;
   flex-direction: column;
   border: 1px solid var(--input-border);
 }
 
-.card h2 { margin-top: 0; color: var(--header-color); }
+.card h2 { margin-top: 0; color: var(--header-color); border-bottom: 2px solid var(--input-border); padding-bottom: 10px; }
 
-form { display: flex; flex-direction: column; gap: 12px; }
-label { font-size: 14px; font-weight: bold; color: var(--text-color); opacity: 0.9;}
+/* =========================================
+   3. FORMULÁRIO E INPUTS
+   ========================================= */
+/* Reduzimos o "gap" para o formulário ficar mais compacto verticalmente */
+.grid-form { display: flex; flex-direction: column; gap: 10px; }
 
-input { 
-  padding: 12px; 
+.campo-form { display: flex; flex-direction: column; gap: 4px; }
+
+.campo-linha { display: flex; gap: 15px; }
+.campo-linha .campo-form { flex: 1; }
+
+label { font-size: 14px; font-weight: 600; color: var(--text-color); opacity: 0.9;}
+
+/* Dicas de uso (ex: Duplex, Sobrado) */
+.dica-texto {
+  font-size: 12px;
+  color: var(--text-color);
+  opacity: 0.6;
+  margin-top: 2px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Reduzimos o padding vertical dos inputs para não precisarmos dar scroll na página */
+input[type="number"], 
+input[type="text"], 
+select { 
+  padding: 10px 12px; 
   background-color: var(--input-bg);
   color: var(--input-text);
   border: 1px solid var(--input-border); 
   border-radius: 8px; 
-  font-size: 16px; 
+  font-size: 15px; 
+  outline: none;
+  transition: border 0.2s;
 }
 
-/* MELHORIA PARA O MÓBILE: Esconde as setinhas dentro do input de número */
+input:focus, select:focus { border-color: #00a884; }
+
 input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* SLIDERS (Barrinhas) */
+.slider-container { margin-bottom: 2px; }
+
+.badge {
+  background-color: #00a884; 
+  color: white; 
+  padding: 3px 10px;
+  border-radius: 12px; 
+  font-size: 12px; 
+  margin-left: 8px;
+  font-weight: bold;
 }
 
+input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; padding: 8px 0; border: none; }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%;
+  background: #00a884; cursor: pointer; margin-top: -6px; box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* AGORA USANDO A NOVA VARIÁVEL DA BARRA */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%; height: 6px; cursor: pointer; background: var(--slider-track); border-radius: 3px;
+}
+
+/* BOTÃO DE AVALIAR */
 .btn-avaliar {
-  background-color: #00a884; /* Verde destaque */
-  color: white; 
-  padding: 14px; 
-  border: none; 
-  border-radius: 8px;
-  font-size: 16px; 
-  cursor: pointer; 
-  font-weight: bold; 
-  margin-top: 10px; 
-  transition: 0.2s;
+  background-color: #00a884; color: white; padding: 12px; border: none; 
+  border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; 
+  margin-top: 10px; transition: background 0.3s; box-shadow: 0 4px 6px var(--shadow);
 }
 .btn-avaliar:hover { background-color: #008f6f; }
 .btn-avaliar:disabled { background-color: #555; cursor: not-allowed; }
 
 .resultado-preco { 
-  margin-top: 20px; 
-  padding: 15px; 
-  background-color: var(--input-bg); 
-  border-left: 5px solid #00a884; 
-  border-radius: 5px; 
+  margin-top: 15px; padding: 15px; background-color: var(--input-bg); 
+  border-left: 5px solid #00a884; border-radius: 5px; 
 }
-.valor-destaque { font-size: 26px; font-weight: bold; color: #00a884; margin: 0; }
+.valor-destaque { font-size: 26px; font-weight: bold; color: #00a884; margin: 5px 0 0 0; }
 
-/* CHAT ESTILO WHATSAPP */
+/* =========================================
+   4. CHAT ESTILO WHATSAPP
+   ========================================= */
 .chat-box { 
   flex-grow: 1; 
-  background-color: var(--bg-color); /* Fundo da conversa */
-  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* Pattern sutil do wpp */
-  background-blend-mode: overlay;
-  padding: 15px; 
+  background-color: var(--bg-color); 
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); 
+  background-blend-mode: overlay; 
+  padding: 20px; 
   border-radius: 8px; 
   margin-bottom: 15px; 
-  height: 400px; 
+  height: 500px; 
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -142,39 +197,36 @@ input[type=number]::-webkit-outer-spin-button {
 
 .mensagem {
   max-width: 85%;
-  padding: 10px 14px;
+  padding: 12px 15px;
   border-radius: 8px;
   font-size: 15px;
   line-height: 1.5;
-  box-shadow: 0 1px 2px var(--shadow);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   position: relative;
+  word-wrap: break-word;
 }
 
-/* BALÃO DO BOT (Esquerda - Justificado) */
 .mensagem.bot {
   background-color: var(--bot-bubble);
+  color: var(--text-color);
   align-self: flex-start;
-  text-align: justify; /* Textos longos justificados como você pediu */
-  border-top-left-radius: 0; /* Ponta do balão */
+  text-align: left;
+  border-top-left-radius: 0; 
 }
 
-/* BALÃO DO USUÁRIO (Direita - Alinhado à direita) */
 .mensagem.user {
   background-color: var(--user-bubble);
+  color: var(--text-color);
   align-self: flex-end;
   text-align: right;
-  border-top-right-radius: 0; /* Ponta do balão */
+  border-top-right-radius: 0; 
 }
 
-.form-chat { flex-direction: row; }
-.form-chat input { flex-grow: 1; }
+.form-chat { display: flex; flex-direction: row; gap: 10px; }
+.form-chat input { flex-grow: 1; margin: 0; }
 .btn-enviar {
-  background-color: #00a884;
-  color: white;
-  border: none;
-  padding: 0 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
+  background-color: #00a884; color: white; border: none; padding: 0 25px;
+  border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; transition: 0.2s;
 }
+.btn-enviar:hover { background-color: #008f6f; }
 .btn-enviar:disabled { background-color: #555; cursor: not-allowed; }
