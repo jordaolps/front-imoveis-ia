@@ -1,5 +1,3 @@
-### 2. README para o Repositório do Front-end (`front-imoveis-ia`)
-
 # Front-end: Interface de Consultoria Imobiliária IA
 
 Este é o Front-end do projeto de Consultoria Imobiliária com Inteligência Artificial, construído com **React** e **Vite**. 
@@ -28,7 +26,7 @@ A aplicação oferece uma interface moderna dividida em duas funcionalidades pri
 
 1. Clone o repositório:
    
-    ```git clone https://github.com/SEU_USUARIO/front-imoveis-ia.git```
+    ```git clone https://github.com/jordaolps/front-imoveis-ia.git```
 
     ```cd front-imoveis-ia```
 
